@@ -1,0 +1,242 @@
+Câu 1:
+template <class T>
+void Sorting<T>::selectionSort(T *start, T *end)
+{
+    int len=end-start;
+    int curr=0;
+    while(curr<len-1){
+        int small=curr;
+        int walker=curr+1;
+        while(walker<len){
+            if(start[small]>start[walker]){
+                small=walker;
+            }
+            walker++;
+        }
+        swap(start[curr],start[small]);
+        curr++;
+        printArray(start,end);
+    }
+    return;
+}
+///////////////////////////
+Câu 2:
+static void sortSegment(T* start, T* end, int segment_idx, int cur_segment_total) {
+    int size=end-start;
+    if (size<=1) return;
+    int cur=segment_idx+cur_segment_total;
+    while (cur<size) {
+        T temp=start[cur];
+        int i=0;
+        for (i=cur-cur_segment_total; i>=0 && start[i]>temp; i-=cur_segment_total)
+            start[i+cur_segment_total]=start[i];
+        start[i+cur_segment_total]=temp;
+        cur+=cur_segment_total;
+    }
+}
+
+static void ShellSort(T* start, T* end, int* num_segment_list, int num_phases) {
+    for (int i=num_phases-1; i>=0; i--) {
+        for (int segment=0; segment<num_segment_list[i]; segment++)
+            sortSegment(start, end, segment, num_segment_list[i]);
+        cout<<num_segment_list[i]<<" segments: ";
+        printArray(start, end);
+    }
+}
+///////////////////////////
+Câu 3:
+static void sortSegment(T* start, T* end, int segment_idx, int cur_segment_total) {
+    int size=end-start;
+    if (size<=1) return;
+    int cur=segment_idx+cur_segment_total;
+    while (cur<size) {
+        T temp=start[cur];
+        int i=0;
+        for (i=cur-cur_segment_total; i>=0 && start[i]>temp; i-=cur_segment_total)
+            start[i+cur_segment_total]=start[i];
+        start[i+cur_segment_total]=temp;
+        cur+=cur_segment_total;
+    }
+}
+
+static void ShellSort(T* start, T* end, int* num_segment_list, int num_phases) {
+    for (int i=num_phases-1; i>=0; i--) {
+        for (int segment=0; segment<num_segment_list[i]; segment++)
+            sortSegment(start, end, segment, num_segment_list[i]);
+        cout<<num_segment_list[i]<<" segments: ";
+        printArray(start, end);
+    }
+}
+/////////////////////////////////////////
+Câu 4:
+static T* Partition(T* start, T* end) {
+    T pivot=start[0];
+    int i=0, j=end-start;
+    while (i<j) {
+        i++; j--;
+        for (;start[i]<pivot; i++) {}
+        for (;start[j]>pivot; j--) {}
+        swap(start[i], start[j]);
+    }
+    swap(start[j], start[i]);
+    swap(start[j], start[0]);
+    cout<<j<<" ";
+    return start+j;
+}
+
+static void QuickSort(T* start, T* end) {
+    if (start<end) {
+        T* p=Partition(start, end);
+        QuickSort(start, p);
+        QuickSort(p+1, end);
+    }
+}
+./////////////////////////////////
+Câu 5:
+static void merge(T* left, T* middle, T* right) {
+    int lsize=middle-left+1, rsize=right-middle;
+    T* larr=new T[lsize];
+    T* rarr=new T[rsize];
+    for (int i=0; i<lsize; i++) larr[i]=left[i];
+    for (int i=0; i<rsize; i++) rarr[i]=middle[i+1];
+    int i=0, l=0, r=0;
+    for (; l<lsize && r<rsize; i++) {
+        if (larr[l]<rarr[r]) left[i]=larr[l++];
+        else left[i]=rarr[r++];
+    }
+    while (l<lsize) left[i++]=larr[l++];
+    while (r<rsize) left[i++]=rarr[r++];
+    delete[] larr;
+    delete[] rarr;
+    Sorting::printArray(left, right);
+}
+static void mergeSort(T* start, T* end){
+    if (!start || start>=end) return;
+    int mid=(end-start)/2;
+    mergeSort(start, start+mid);
+    mergeSort(start+mid+1, end);
+    merge(start, start+mid, end);
+}
+//////////////////////////////////
+Câu 7:
+template <class T>
+T *Sorting<T>::Partition(T *start, T *end)
+{
+    T pivot=start[0];
+    int i=0, j=end-start;
+    while (i<j) {
+        i++; j--;
+        for (;start[i]<pivot; i++) {}
+        for (;start[j]>pivot; j--) {}
+        swap(start[i], start[j]);
+    }
+    swap(start[j], start[i]);
+    swap(start[j], start[0]);
+    return start+j;
+}
+
+template <class T>
+void Sorting<T>::insertionSort(T *start, T *end)
+{
+    int length=end-start, cur=1;
+    if (length<1) return;
+    cout<<"Insertion sort: ";
+    printArray(start, end);
+    while (cur<length) {
+        T temp=start[cur];
+        int i=0;
+        for (i=cur-1; i>=0 && start[i]>temp; i--)
+            start[i+1]=start[i];
+        start[i+1]=temp;
+        cur++;
+    }
+}
+
+template <class T>
+void Sorting<T>::hybridQuickSort(T *start, T *end, int min_size)
+{
+    if (end-start<min_size) {
+        insertionSort(start, end);
+        return;
+    }
+    cout<<"Quick sort: ";
+    printArray(start, end);
+    T* p=Partition(start, end);
+    hybridQuickSort(start, p, min_size);
+    hybridQuickSort(p+1, end, min_size);
+}
+/////////////////////////////
+Câu 8:
+static void merge(T* start, T* middle, T* end) {
+    int lsize=middle-start+1, rsize=end-middle;
+    T* larr=new T[lsize];
+    T* rarr=new T[rsize];
+    for (int i=0; i<lsize; i++) larr[i]=start[i];
+    for (int i=0; i<rsize; i++) rarr[i]=middle[i+1];
+    int i=0, l=0, r=0;
+    for (; l<lsize && r<rsize; i++) {
+        if (larr[l]<rarr[r]) start[i]=larr[l++];
+        else start[i]=rarr[r++];
+    }
+    while (l<lsize) start[i++]=larr[l++];
+    while (r<rsize) start[i++]=rarr[r++];
+    delete[] larr;
+    delete[] rarr;
+}
+
+static void InsertionSort(T* start, T* end) {
+    int length=end-start, cur=1;
+    if (length<1) return;
+    while (cur<length) {
+        T temp=start[cur];
+        int i=0;
+        for (i=cur-1; i>=0 && start[i]>temp; i--)
+            start[i+1]=start[i];
+        start[i+1]=temp;
+        cur++;
+    }
+}
+
+static void TimSort(T* start, T* end, int min_size) {
+    int size=end-start;
+    for (int i=0; i<size; i+=min_size)
+        InsertionSort(start+i, i+min_size<size?start+i+min_size:end);
+    cout<<"Insertion Sort: ";
+    printArray(start, end);
+    int i=1;
+    for (int s=min_size; s<size; s*=2) {
+        for (int l=0; l<size; l+=2*s) {
+            int mid=l+s-1;
+            int r=l+2*s<size?l+2*s-1:size-1;
+            if(mid<r) merge(start+l, start+mid, start+r);
+            cout<<"Merge "<<i++<<": ";
+            printArray(start, end);
+        }
+    }
+}
+////////////////
+template <class T>
+void Sorting<T>::oddEvenSort(T *start, T *end)
+{
+    /*TODO*/
+    int len=end-start;
+    bool flag=false;
+    while(!flag){
+        flag=true;
+        for(int i=0;i<=len-2;i+=2){
+            if(start[i]>start[i+1]) {
+                swap(start[i],start[i+1]);
+                flag=false;
+            }
+        }
+        for(int i=1;i<=len-2;i+=2){
+            if(start[i]>start[i+1]){
+                swap(start[i],start[i+1]);
+                flag=false;
+            }
+        }
+        printArray(start,end);
+    }
+    return;
+}
+

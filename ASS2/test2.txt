@@ -1,0 +1,13 @@
+INSERT a number false
+INSERT b string false
+INSERT vai (number,string)->string true
+BEGIN
+INSERT c string false
+INSERT d string false
+INSERT c1 string false
+INSERT d2 string false
+INSERT c3 string false
+INSERT d4 string false
+BEGIN
+INSERT gg string false
+END

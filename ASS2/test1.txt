@@ -1,0 +1,5 @@
+INSERT cc number false
+BEGIN
+INSERT k number false
+INSERT hih string false
+END

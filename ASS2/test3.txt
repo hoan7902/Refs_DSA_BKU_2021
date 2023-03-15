@@ -1,0 +1,11 @@
+INSERT y string true
+INSERT vai (number,string)->string true
+INSERT m string false
+ASSIGN m vai(123,y)
+INSERT vailon (number,string,string,number)->string true
+ASSIGN y vai(11111,'1234')
+INSERT cc number false
+BEGIN
+INSERT kkk number true
+ASSIGN y vailon(123,'123',m,cc)
+END
