@@ -1,4 +1,4 @@
-This is a repository for reference materials related to the Data Structures and Algorithms (DSA) course at the University of Education, BKU, Vietnam, in 2021.
+This is a repository for reference materials related to the Data Structures and Algorithms (DSA) course at Ho Chi Minh University of Technology, BKU, Vietnam, in 2021.
 
 The materials in this repository include lecture slides, code samples, assignments, and solutions. They are intended to supplement the course materials and help students better understand the concepts and techniques covered in the course.
 
