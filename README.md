@@ -8,9 +8,7 @@ Lectures: This folder contains the lecture slides for each topic covered in the 
 
 Code: This folder contains the code samples used in the lectures and assignments.
 
-Assignments: This folder contains the assignments given to the students.
-
-Solutions: This folder contains the solutions to the assignments.
+Assignments: This folder contains 3 assignments given to the students and my overall score is 9.75.
 
 Getting Started:
 
